@@ -16,6 +16,33 @@ export default function () {
           ))}
         </select>
       </div>
+      <div className="grid grid-cols-1 gap-3">
+        <label htmlFor="activity" className="font-bold">
+          Actividad:
+        </label>
+        <input
+          id="activity"
+          type="text"
+          className="border border-slate-300 p-2 rounded-lg"
+          placeholder="Ej. Comida,Jugo,Ensalda, Ejericio, Pesas,Gym"
+        ></input>
+      </div>
+      <div className="grid grid-cols-1 gap-3">
+        <label htmlFor="calories" className="font-bold">
+          Calorias:
+        </label>
+        <input
+          id="calories"
+          type="number"
+          className="border border-slate-300 p-2 rounded-lg"
+          placeholder="Calorias Ej. 500, 200"
+        ></input>
+      </div>
+      <input
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white"
+        type="submit"
+        value="Enviar"
+      ></input>
     </form>
   );
 }
