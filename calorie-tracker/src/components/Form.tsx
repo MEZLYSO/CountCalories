@@ -26,7 +26,6 @@ export default function () {
   const isValidActivity = () => {
     const { name, calories } = activity;
     console.log(name.trim() !== "" && calories > 0);
-
     return name.trim() !== "" && calories > 0;
   };
 
@@ -74,10 +73,10 @@ export default function () {
         ></input>
       </div>
       <input
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer"
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-25"
         type="submit"
-        disabled={isValidActivity()}
-        value="Enviar"
+        disabled={!isValidActivity()}
+        value={activity.category === 1 ? "Guardar comida" : "Guardar ejericio"}
       ></input>
     </form>
   );
