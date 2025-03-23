@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { categories } from "../data/categories";
+import { Activity } from "../types";
 
 export default function () {
-  const [activity, setActivity] = useState({
+  const [activity, setActivity] = useState<Activity>({
     category: 1,
     name: "",
     calories: 0,
   });
 
-  const handleChange = (f: any) => {
+  //Almacenar en activity y setear tipo
+  const handleChange = (
+    //Coreccion del tipo de dato de e en este caso es EventChange
+    f: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>,
+  ) => {
+    const isNumberField = ["category", "calories"].includes(f.target.id);
     setActivity({
       //Desconozco el cambio entre este operador
       ...activity,
       //Y la defincion de los valores de el target
-      [f.target.id]: f.target.value,
+      [f.target.id]: isNumberField ? +f.target.value : f.target.value,
     });
+  };
+
+  const isValidActivity = () => {
+    const { name, calories } = activity;
+    console.log(name.trim() !== "" && calories > 0);
+
+    return name.trim() !== "" && calories > 0;
   };
 
   return (
@@ -63,6 +76,7 @@ export default function () {
       <input
         className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer"
         type="submit"
+        disabled={isValidActivity()}
         value="Enviar"
       ></input>
     </form>
