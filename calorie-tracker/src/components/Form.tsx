@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState } from "react";
 import { categories } from "../data/categories";
 import { Activity } from "../types";
 
@@ -25,12 +25,20 @@ export default function () {
 
   const isValidActivity = () => {
     const { name, calories } = activity;
-    console.log(name.trim() !== "" && calories > 0);
     return name.trim() !== "" && calories > 0;
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log("Enviando");
+  };
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form
+      className="space-y-5 bg-white shadow p-10 rounded-lg"
+      onSubmit={handleSubmit}
+    >
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category">Categoria:</label>
         <select
