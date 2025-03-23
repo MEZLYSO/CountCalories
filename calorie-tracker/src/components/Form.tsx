@@ -8,9 +8,11 @@ export default function () {
     calories: 0,
   });
 
-  const handleChange = (f) => {
+  const handleChange = (f: any) => {
     setActivity({
+      //Desconozco el cambio entre este operador
       ...activity,
+      //Y la defincion de los valores de el target
       [f.target.id]: f.target.value,
     });
   };
